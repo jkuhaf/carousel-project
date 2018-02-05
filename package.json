@@ -1,0 +1,24 @@
+{
+  "name": "carousel-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amelia-brown/carousel-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amelia-brown/carousel-project/issues"
+  },
+  "homepage": "https://github.com/amelia-brown/carousel-project#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  }
+}
