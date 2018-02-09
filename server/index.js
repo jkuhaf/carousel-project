@@ -1,12 +1,35 @@
 const express = require('express')
 const cors = require('cors')
+var bodyParser = require('body-parser')
+
+const utils = require('./utils')
 
 const app = express()
 
+app.use(bodyParser.json())
+
 app.use(cors())
 
+app.post('/items/:id', (req, res) => {
+  let rating = req.body
+  let id = req.params.id
+  return new Promise((resolve, reject) => {
+    resolve(utils.writeToFile(id, rating))
+  })
+  .then(resp => res.send(resp))
+  .catch(err => res.status(400).send(err))
+})
+
 app.get('/items', (req, res) => {
-  res.send('hello')
+  let amt = parseInt(req.query.amt) || 20
+  let page = parseInt(req.query.page) || 1
+  return new Promise((resolve, reject) => {
+    resolve(utils.readFile(amt, page))
+  })
+  .then(resp => {
+     res.send(resp)
+   })
+  .catch((err) => res.status(400).send(err))
 })
 
 app.listen('3000', (err) => {
@@ -16,3 +39,5 @@ app.listen('3000', (err) => {
     console.log('server listening port 3000')
   }
 })
+
+utils.initializeData()
