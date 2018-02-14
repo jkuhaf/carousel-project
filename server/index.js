@@ -11,10 +11,11 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post('/items/:id', (req, res) => {
+  console.log(req.body)
   let rating = req.body
   let id = req.params.id
   return new Promise((resolve, reject) => {
-    resolve(utils.writeToFile(id, rating))
+    resolve(utils.write(id, rating))
   })
   .then(resp => res.send(resp))
   .catch(err => res.status(400).send(err))
@@ -24,7 +25,7 @@ app.get('/items', (req, res) => {
   let amt = parseInt(req.query.amt) || 20
   let page = parseInt(req.query.page) || 1
   return new Promise((resolve, reject) => {
-    resolve(utils.readFile(amt, page))
+    resolve(utils.read(amt, page))
   })
   .then(resp => {
      res.send(resp)
@@ -39,5 +40,3 @@ app.listen('3000', (err) => {
     console.log('server listening port 3000')
   }
 })
-
-utils.initializeData()

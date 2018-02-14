@@ -1,64 +1,29 @@
 const fs = require('fs')
 const path = require('path')
 const fetch = require('node-fetch')
+const diskdb = require('diskdb')
 
-const DATA_PATH = path.resolve(__dirname, '..', 'data', 'index.json')
-const MEMORY_PATH = path.resolve(__dirname, 'data.json')
+const DATA_PATH = path.resolve(__dirname, '..', 'data')
 
-function initializeData () {
-  fs.readFile(path.resolve(DATA_PATH), function (err, data) {
-    if (err) throw err
-    fs.writeFile(path.resolve(MEMORY_PATH), data, (err) => {
-      if (err) throw err
-    })
-  })
+var db = diskdb.connect(DATA_PATH, ['items']);
+
+function read (amt, page) {
+  const result = db['items'].find()
+  let start = (page * amt) - amt
+  let end = (page * amt)
+  let entities = result.slice(start, end)
+  return resolve(JSON.stringify(entities))
 }
 
-function writeToFile (id, rating) {
-  return new Promise((resolve, reject) => {
-    let response
-    fs.readFile(MEMORY_PATH, function (err, data) {
-      if (err) throw err
-      let result = JSON.parse(data)
-      let update = result.items.map(item => {
-        if (item.uuid === id) {
-          item.rating = rating
-          response = item
-        }
-        return item
-      })
-      fs.writeFile(path.resolve(MEMORY_PATH), JSON.STRINGIFY(update), (err) => {
-        if (err) throw err
-        resolve(response)
-      })
-    })
-  })
+function write (id, rating) {
+  let query = {uuid: id}
+  let update = {rating: rating}
+  db.items.update(query, update)
+  let item = db.items.findOne({uuid: id})
+  return item
 }
-
-function readFile (amt, page) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(MEMORY_PATH, function (err, data) {
-      if (err) throw err
-      let result = JSON.parse(data)
-      let start = (page * amt) - amt
-      let end = (page * amt)
-      let entities = result.items.slice(start, end)
-      return resolve(JSON.stringify(entities))
-    })
-  })
-}
-
-function postToServer () {
-  return fetch('http://localhost:3000/items/852374', {
-    method: 'POST',
-    body: JSON.stringify({rating: true})
-  })
-}
-
-postToServer()
 
 module.exports = {
-  initializeData,
-  writeToFile,
-  readFile
+  write,
+  read
 }
