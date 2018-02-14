@@ -13,5 +13,5 @@ let rateItem = (rating) => fetch('http://localhost:3000/items/852374', {
 })
 
 getItems()
-  .then(() => rateItem('like')
-    .then(() => getItems()))
+ .then(() => rateItem('like')
+   .then(() => getItems()))

@@ -11,26 +11,20 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post('/items/:id', (req, res) => {
-  console.log(req.body)
-  let rating = req.body
+  let rating = req.body.rating
+  console.log(rating)
   let id = req.params.id
-  return new Promise((resolve, reject) => {
-    resolve(utils.write(id, rating))
-  })
-  .then(resp => res.send(resp))
-  .catch(err => res.status(400).send(err))
+  let resp = utils.write(id, rating)
+  if (resp) return res.send(resp)
+  return res.status(500).send('could not write result')
 })
 
 app.get('/items', (req, res) => {
   let amt = parseInt(req.query.amt) || 20
   let page = parseInt(req.query.page) || 1
-  return new Promise((resolve, reject) => {
-    resolve(utils.read(amt, page))
-  })
-  .then(resp => {
-     res.send(resp)
-   })
-  .catch((err) => res.status(400).send(err))
+  let resp = utils.read(amt, page)
+  if (resp) return res.send(resp)
+  return res.status(500).send('could not read results')
 })
 
 app.listen('3000', (err) => {
