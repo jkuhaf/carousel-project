@@ -12,7 +12,6 @@ app.use(cors())
 
 app.post('/items/:id', (req, res) => {
   let rating = req.body.rating
-  console.log(rating)
   let id = req.params.id
   let resp = utils.write(id, rating)
   if (resp) return res.send(resp)
