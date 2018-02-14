@@ -15,7 +15,7 @@ video and opens in a new window.
 Each item should have a heart icon. If the user clicks on the heart, the user
 rates the item.
 
-Once an item is rated, that item should disappear. Make sure there is always 16
+Once an item is rated, that item should disappear. Make sure there are always 16
 items on the page.
 
 Please refrain from using a carousel library. Other than that, you can
