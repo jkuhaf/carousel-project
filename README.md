@@ -10,7 +10,7 @@ items. The user should be able to navigate the items using an arrow on
 either side of the carousel.
 
 If the item has a video link, please include a button that links to the
-video on the item.
+video and opens in a new window.
 
 Each item should have a heart icon. If the user clicks on the heart, the user
 rates the item.
@@ -22,6 +22,7 @@ Please refrain from using a carousel library. Other than that, you can
 use any libraries or frameworks you like for this assignment.
 
 Icons can be found at http://google.github.io/material-design-icons/
+
 A similar font can be found at https://fonts.google.com/specimen/Roboto
 
 ## To run the API server:
@@ -40,7 +41,7 @@ to rate an item:
 `POST localhost:3000/items/${id}/`
 
 ```
-{
+body: {
   rating: 'like' || null
 }
 ```
