@@ -1,5 +1,15 @@
 # carousel-project
 
+## To run:
+
+`npm install && (cd client && npm install)`
+
+`npm run dev`
+
+Once the server is running, the project will be visible at http://localhost:3000/
+
+The client-side code was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
 ## Requirements:
 
 Fetch items from the API And display them as a carousel. Follow the
@@ -24,11 +34,6 @@ use any libraries or frameworks you like for this assignment.
 Icons can be found at http://google.github.io/material-design-icons/
 
 A similar font can be found at https://fonts.google.com/specimen/Roboto
-
-## To run:
-
-`npm install && (cd client && npm install)`
-`npm run dev`
 
 to get items:
 
