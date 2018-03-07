@@ -1,0 +1,13 @@
+.App {
+  display: block;
+  width: 80%;
+  margin: auto;
+}
+
+.App .loading-message {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 55px);
+  font-size: 35px;
+  letter-spacing: 3px;
+}

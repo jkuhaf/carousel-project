@@ -1,0 +1,46 @@
+.Carousel-container-outer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Carousel-container-inner {
+  display: block;
+  width: 100%;
+  padding: 0 40px;
+}
+
+.Carousel-container-inner h1 {
+  color: white;
+  font-size: 34px;
+}
+
+.Carousel-breadcrumbs {
+  display: block;
+  height: 40px;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-before {
+  background: url('./navigate_before.svg') no-repeat center;
+}
+
+.nav-next {
+  background: url('./navigate_next.svg') no-repeat center;
+}
+
+.nav-before, .nav-next {
+  height: 32px;
+  width: 32px;
+  display: block;
+  margin-top: 74px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
