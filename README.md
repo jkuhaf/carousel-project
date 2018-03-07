@@ -25,20 +25,21 @@ Icons can be found at http://google.github.io/material-design-icons/
 
 A similar font can be found at https://fonts.google.com/specimen/Roboto
 
-## To run the API server:
+## To run:
 
-`npm install && npm run start`
+`npm install && (cd client && npm install)`
+`npm run dev`
 
 to get items:
 
-`GET localhost:3000/items/?p=${page}&amt=${amt}`
+`GET localhost:3001/items/?p=${page}&amt=${amt}`
 
 where `page` is an integer representing page number, and `amt` is an integer
 representing the number of items per page.
 
 to rate an item:
 
-`POST localhost:3000/items/${id}/`
+`POST localhost:3001/items/${id}/`
 
 ```
 body: {

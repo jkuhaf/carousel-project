@@ -26,10 +26,10 @@ app.get('/items', (req, res) => {
   return res.status(500).send('could not read results')
 })
 
-app.listen('3000', (err) => {
+app.listen('3001', (err) => {
   if (err) {
     console.log('there was a problem starting the server')
   } else {
-    console.log('server listening port 3000')
+    console.log('server listening port 3001')
   }
 })

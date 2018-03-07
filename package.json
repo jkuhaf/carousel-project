@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "start": "node server",
+    "client": "cd client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,8 @@
     "diskdb": "^0.1.17",
     "express": "^4.16.2",
     "node-fetch": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
   }
 }
