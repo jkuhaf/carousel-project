@@ -31,3 +31,36 @@
   width: 100%;
   bottom: 0;
 }
+
+.Item-details {
+  max-width: 224px;
+  margin-top: 24px;
+}
+
+.Item-details h2 {
+  font-size: 24px;
+}
+
+.Item-details h3 {
+  margin-top: 9px;
+  font-size: 18px;
+}
+
+.Item-details h2,
+.Item-details h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Item .favorite {
+  background: url('./favorite.svg') no-repeat center;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  border: 0;
+  cursor: pointer;
+}

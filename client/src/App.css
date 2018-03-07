@@ -1,7 +1,8 @@
 .App {
   display: block;
-  width: 80%;
+  width: 95%;
   margin: auto;
+  max-width: 1200px;
 }
 
 .App .loading-message {

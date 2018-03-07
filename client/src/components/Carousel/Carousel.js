@@ -1,31 +1,16 @@
 import React, { Component } from 'react';
 import Item from './../Item/Item';
 import './carousel.css';
-import chunk from 'lodash/chunk';
-
-const ITEMS_PER_PAGE = 4;
 
 class Carousel extends Component {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
-      availablePages: [],
       activePage: [],
       currentIndex: 0,
       maxIndex: null
     };
-  }
-
-  setInitialView = (items) => {
-    const availablePages = chunk(items, ITEMS_PER_PAGE);
-    const maxIndex = availablePages.length;
-
-    this.setState({
-      activePage: availablePages[this.state.currentIndex],
-      availablePages,
-      maxIndex,
-    })
   }
 
   handleNavigation = (event) => {
@@ -74,26 +59,43 @@ class Carousel extends Component {
     });
   }
 
+  rateItem = (id) => {
+    this.props.rateItem && this.props.rateItem(id);
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (!this.state.availablePages.length) {
-      this.setInitialView(nextProps.items);
-    }
+    this.setState({
+      activePage: nextProps.items[this.state.currentIndex],
+      availablePages: nextProps.items,
+      maxIndex: nextProps.items.length,
+    });
   }
 
   render() {
-    const { activePage } = this.state;
+    const { activePage, availablePages, currentIndex } = this.state;
     return (
       <section className="Carousel-container-outer">
         <button className="nav-before" onClick={this.handleNavigation} />
-        {!!activePage.length &&
+        {!!this.state.activePage.length &&
           <div className="Carousel-container-inner">
             <header>
               <h1>Top recommendations for you</h1>
-              <div className="Carousel-breadcrumbs"></div>
+              <div className="Carousel-breadcrumbs">
+                <div className="breadcrumb-container">
+                  {availablePages.map((page, index) =>
+                    <span key={index} className={index === currentIndex ? 'active' : null}/>)
+                  }
+                </div>
+              </div>
             </header>
             <div className="content">
-              {activePage.map(
-                item => <Item key={item.uuid} data={item.itemData} name={item.name} />
+              {activePage.map(item =>
+                <Item
+                  key={item.uuid}
+                  data={item.itemData}
+                  name={item.name}
+                  id={item.uuid}
+                  rateItem={this.props.rateItem} />
               )}
             </div>
           </div>
